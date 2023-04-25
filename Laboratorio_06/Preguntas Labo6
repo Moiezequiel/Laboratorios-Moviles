@@ -1,0 +1,7 @@
+ ¿En qué consiste el patrón de diseño Repository?
+R//El patrón de repositorio es un patrón de diseño que aísla la capa de datos del resto de la app. 
+La capa de datos hace referencia a la parte de tu app, independiente de la IU, que controla los datos y la lógica empresarial de la app, 
+lo que expone API coherentes de modo que el resto de la app acceda a esos datos
+¿Qué es el ViewModel?
+R/El patrón viewmodel de vista es un patrón de arquitectura de software. 
+Se caracteriza por tratar de desacoplar lo máximo posible la interfaz de usuario de la lógica de la aplicación
