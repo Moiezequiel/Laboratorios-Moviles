@@ -1,0 +1,57 @@
+1.-¿Qué es una coroutine en Kotlin y cómo se diferencia de un hilo tradicional?
+R// Las coroutines son un mecanismo de programación que permite escribir código asíncrono de manera
+secuencial y estructurada en Kotlin. A diferencia de los hilos tradicionales, las coroutines son concurrencia
+cooperativa, lo que significa que el programador tiene el control para decidir cuándo se suspende y reanuda.
+Además, el uso de coroutines simplifica la programación asíncrona al proporcionar una sintaxis más clara y concisa
+en comparación con los enfoques tradicionales como los callbacks o las promesas.
+
+2-¿Cuál es la importancia de la suspensión en las coroutines y cómo se implementa?
+R// La suspensión en las coroutines de Android se refiere a la capacidad de suspender momentáneamente la
+ejecución de una coroutine sin obstruir el main thread. Cuando se suspende una coroutine, el hilo que estaba
+utilizando se libera para que otras coroutines o acciones puedan utilizarlo. Como resultado, es posible desarrollar
+código asíncrono y no bloqueante que pueda manejar actividades largas o bloqueantes sin interferir con el hilo
+principal de la interfaz de usuario o hacer que la aplicación sea inutilizable.
+3-¿Cuál es el propósito del Dispatcher en las coroutines y cómo se elige
+
+uno adecuado para cada tarea?
+R//En el contexto de las coroutines en Android Studio, el Dispatcher es responsable de determinar en qué hilo o hilo
+ de ejecución se ejecutará una coroutine. El propósito principal del Dispatcher es administrar y distribuir el trabajo de 
+las coroutines en diferentes hilos para garantizar un rendimiento óptimo y evitar bloqueos o congelamientos en la interfaz de usuario.
+
+Existen diferentes tipos de Dispatchers disponibles en la biblioteca Kotlin Coroutines que se pueden utilizar en Android Studio, y la 
+elección del Dispatcher adecuado depende del tipo de tarea que se va a realizar. Aquí hay algunos Dispatchers comunes:
+
+Dispatchers.Main: Este Dispatcher se utiliza para realizar operaciones en el hilo principal de la interfaz de usuario. 
+Se recomienda utilizarlo para actualizar la interfaz de usuario después de completar una tarea en segundo plano.
+Por ejemplo, al mostrar los resultados de una solicitud de red en una vista.
+
+Dispatchers.IO: Este Dispatcher se utiliza para realizar operaciones de entrada/salida (I/O) intensivas, como leer 
+o escribir en bases de datos, realizar solicitudes de red o leer/escribir archivos en disco. Utilizar este Dispatcher
+ para tareas que no bloqueen el hilo principal de la interfaz de usuario, ya que utiliza un grupo de hilos específico para operaciones de I/O.
+
+Dispatchers.Default: Este Dispatcher se utiliza para tareas computacionalmente intensivas, como ordenar una lista o r
+ealizar cálculos complejos. Utiliza un grupo de hilos compartidos y está diseñado para tareas que consumen una cantidad significativa de CPU.
+
+Para elegir el Dispatcher adecuado para cada tarea, es importante considerar el impacto que tendrá en el rendimiento de la aplicación. 
+Aquí hay algunas pautas generales:
+
+Utiliza Dispatchers.Main cuando necesites actualizar la interfaz de usuario después de una tarea en segundo plano.
+Utiliza Dispatchers.IO para operaciones de red, lectura/escritura de archivos o interacciones con bases de datos que 
+no bloqueen la interfaz de usuario.
+Utiliza Dispatchers.Default para tareas computacionalmente intensivas que no bloqueen la interfaz de usuario.
+Además de los Dispatchers mencionados, también puedes crear tus propios Dispatchers personalizados si tienes requisitos específicos para la ejecución de tus coroutines.
+
+Es importante tener en cuenta que elegir el Dispatcher adecuado puede mejorar el rendimiento de tu aplicación y proporcionar una experiencia de usuario fluida, evitando 
+bloqueos o congelamientos en la interfaz de usuario.
+
+
+
+4-¿Cuál es el propósito y el uso de la función async en las coroutines?
+R//La función async en las coroutines de Kotlin tiene el propósito de permitir la ejecución concurrente y asíncrona de múltiples tareas, y luego obtener los resultados
+ de esas tareas de manera selectiva cuando sea necesario.
+Cuando se llama a la función async, se crea una coroutine asíncrona que devuelve un objeto Deferred. Este objeto Deferred representa un valor futuro que estará disponible 
+en algún momento después de que se complete la tarea asociada. Puedes pensar en Deferred como una especie de contenedor para el resultado que aún no está disponible.
+El uso de async es útil cuando tienes varias tareas que se pueden ejecutar en paralelo y quieres esperar a que se completen todas o solo obtener el resultado de algunas de ellas 
+en un momento específico.
+Es importante tener en cuenta que async se diferencia de launch en que launch se utiliza para iniciar una coroutine sin un resultado específico, mientras que async se utiliza 
+cuando necesitas obtener un resultado futuro de la coroutine.
